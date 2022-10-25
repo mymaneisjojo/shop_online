@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.annotation.sql.DataSourceDefinition;
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "account")
@@ -17,11 +18,13 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "username")
-    private String name;
+    private String username;
     @Column(name = "email")
     private String email;
     @Column(name = "password")
     private String password;
     @Column(name = "phone")
     private String phone;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
+    private List<Order> lstOrder;
 }
