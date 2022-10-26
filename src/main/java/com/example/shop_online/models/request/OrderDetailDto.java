@@ -1,15 +1,14 @@
 package com.example.shop_online.models.request;
 
 import com.example.shop_online.models.entity.Product;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 public class OrderDetailDto {
-    private Long id;
+    private Integer id;
     private Product product;
     private Double price;
     private Double quantity;

@@ -1,6 +1,6 @@
 package com.example.shop_online.controller;
 
-import com.example.shop_online.models.request.ProductRequest;
+import com.example.shop_online.models.request.ProductDto;
 import com.example.shop_online.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,14 +12,19 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @PostMapping("/add")
-    public ResponseEntity<?> addProduct(@RequestBody ProductRequest productRequest){
-        return ResponseEntity.ok(productService.add(productRequest));
+    @GetMapping("/all")
+    public ResponseEntity<?> getAll(){
+        return ResponseEntity.ok(productService.getAll());
     }
 
-    @PutMapping("/update/{id}")
-    public ResponseEntity<?> updateProduct(@RequestBody ProductRequest productRequest, @PathVariable("id") int id){
-        return ResponseEntity.ok(productService.update(productRequest, id));
+    @PostMapping("/add")
+    public ResponseEntity<?> addProduct(@RequestBody ProductDto productDto){
+        return ResponseEntity.ok(productService.add(productDto));
+    }
+
+    @PatchMapping("/update/{id}")
+    public ResponseEntity<?> updateProduct(@RequestBody ProductDto productDto, @PathVariable("id") int id){
+        return ResponseEntity.ok(productService.update(productDto, id));
     }
 
     @DeleteMapping("delete/{id}")

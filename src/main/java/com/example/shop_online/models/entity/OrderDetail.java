@@ -1,28 +1,28 @@
 package com.example.shop_online.models.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity(name = "order_detail")
-@Data
+@Entity
+@Table(name = "order_detail")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "quantity")
-    private int quantity;
+    private Integer quantity;
 
     @Column(name = "price")
-    private float price;
+    private Float price;
 
     @Column(name = "total")
     private Double total;
@@ -30,6 +30,7 @@ public class OrderDetail {
     @ManyToOne
     private Product product;
     @ManyToOne
+    @JoinColumn(name = "order_id")
     private Order order;
 
     @CreationTimestamp
@@ -41,5 +42,5 @@ public class OrderDetail {
     private Date updatedAt;
 
     @Column(name = "is_deleted")
-    private boolean isDeleted;
+    private Boolean isDeleted;
 }

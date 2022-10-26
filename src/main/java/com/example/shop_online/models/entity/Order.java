@@ -1,8 +1,6 @@
 package com.example.shop_online.models.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -13,19 +11,23 @@ import java.util.List;
 
 @Entity
 @Table(name = "orders")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "note")
     private String note;
 
-    @Column(name = "orderAt")
+    @Column(name = "order_at")
     private LocalDateTime orderAt;
+
+    @Column(name = "total")
+    private Double total;
 
     @ManyToOne
     private Account account;
@@ -42,6 +44,6 @@ public class Order {
     private Date updatedAt;
 
     @Column(name = "is_deleted")
-    private boolean isDeleted;
+    private Boolean isDeleted;
 
 }

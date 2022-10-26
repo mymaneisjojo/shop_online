@@ -1,22 +1,20 @@
 package com.example.shop_online.models.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.annotation.sql.DataSourceDefinition;
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "account")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     @Column(name = "username")
     private String username;
     @Column(name = "email")

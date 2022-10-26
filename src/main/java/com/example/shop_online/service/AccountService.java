@@ -1,13 +1,8 @@
 package com.example.shop_online.service;
 
-import com.example.shop_online.repository.AccountRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.example.shop_online.models.request.LoginDto;
+import com.example.shop_online.models.response.MessageResponse;
 
-@Service
-public class AccountService {
-    @Autowired
-    private AccountRepository accountRepository;
-
-
+public interface AccountService {
+    public MessageResponse login(LoginDto loginDto);
 }

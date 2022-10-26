@@ -1,14 +1,13 @@
 package com.example.shop_online.models.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class AccountDto {
-    private Long id;
+    private Integer id;
     private String username;
     private String email;
     private String phone;
