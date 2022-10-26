@@ -12,10 +12,10 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-//    @GetMapping("/all")
-//    public ResponseEntity<?> getAll(){
-//        return ResponseEntity.ok(productService.getAll());
-//    }
+    @GetMapping("/all")
+    public ResponseEntity<?> getAll(){
+        return ResponseEntity.ok(productService.getAll());
+    }
 
     @PostMapping("/add")
     public ResponseEntity<?> addProduct(@RequestBody ProductDto productDto){
