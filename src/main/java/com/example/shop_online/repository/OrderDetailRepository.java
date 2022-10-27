@@ -9,8 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface OrderDetailRepository extends JpaRepository<OrderDetail, Integer> {
-
-
     @Modifying
     @Query("DELETE FROM OrderDetail ol WHERE ol.order.id = ?1")
     void deleteByOrder(Integer orderId);

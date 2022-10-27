@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/account")
 public class AccountController {
@@ -18,7 +20,7 @@ public class AccountController {
     private AccountService accountService;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginDto loginDto){
+    public ResponseEntity<?> login(@Valid @RequestBody LoginDto loginDto){
 
         return ResponseEntity.ok(accountService.login(loginDto));
 

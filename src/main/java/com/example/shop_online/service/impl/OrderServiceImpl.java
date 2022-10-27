@@ -61,7 +61,7 @@ public class OrderServiceImpl implements OrderService {
             orderDetailRepository.save(orDe);
         }
 
-        return new MessageResponse(200, "Add order successfully");
+        return new MessageResponse(200, " successfully");
     }
 
 
@@ -77,8 +77,10 @@ public class OrderServiceImpl implements OrderService {
     public MessageResponse deleteOrder(int id){
         Order existOrder = orderRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Product", "id", id));
+
         existOrder.setIsDeleted(true);
         orderRepository.save(existOrder);
+
         for (OrderDetail orDe: existOrder.getLstOrderDetail()) {
             Product product = productRepository.findById(orDe.getProduct().getId())
                     .orElseThrow(() -> new ResourceNotFoundException("Product", "id", orDe.getProduct().getId()));

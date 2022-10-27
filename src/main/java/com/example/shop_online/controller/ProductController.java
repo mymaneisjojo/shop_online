@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/product")
 public class ProductController {
@@ -18,12 +20,12 @@ public class ProductController {
 //    }
 
     @PostMapping("/add")
-    public ResponseEntity<?> addProduct(@RequestBody ProductDto productDto){
+    public ResponseEntity<?> addProduct(@Valid  @RequestBody ProductDto productDto){
         return ResponseEntity.ok(productService.add(productDto));
     }
 
     @PatchMapping("/update/{id}")
-    public ResponseEntity<?> updateProduct(@RequestBody ProductDto productDto, @PathVariable("id") int id){
+    public ResponseEntity<?> updateProduct(@Valid @RequestBody ProductDto productDto, @PathVariable("id") int id){
         return ResponseEntity.ok(productService.update(productDto, id));
     }
 
