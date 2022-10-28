@@ -1,6 +1,7 @@
 package com.example.shop_online.controller;
 
 import com.example.shop_online.models.request.ProductDto;
+import com.example.shop_online.models.response.MessageResponse;
 import com.example.shop_online.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class ProductController {
 //    }
 
     @PostMapping("/add")
-    public ResponseEntity<?> addProduct(@Valid  @RequestBody ProductDto productDto){
+    public ResponseEntity<?> addProduct(@Valid @RequestBody ProductDto productDto){
         return ResponseEntity.ok(productService.add(productDto));
     }
 
@@ -31,7 +32,8 @@ public class ProductController {
 
     @DeleteMapping("delete/{id}")
     public ResponseEntity<?> deleteProduct(@PathVariable("id") int id){
-        return ResponseEntity.ok(productService.delete(id));
+        productService.delete(id);
+        return ResponseEntity.ok(new MessageResponse(200, "Delete successfully"));
     }
 
 }

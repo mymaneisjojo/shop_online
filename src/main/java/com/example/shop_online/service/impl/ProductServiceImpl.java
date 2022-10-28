@@ -7,6 +7,7 @@ import com.example.shop_online.models.request.ProductDto;
 import com.example.shop_online.models.response.MessageResponse;
 import com.example.shop_online.repository.ProductRepository;
 import com.example.shop_online.service.ProductService;
+import com.example.shop_online.service.generic.impl.GenericServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,33 +16,32 @@ import java.util.List;
 
 @Service
 @Transactional
-public class ProductServiceImpl implements ProductService {
-    @Autowired
-    private ProductRepository productRepository;
-    @Override
-    public List<Product> getAll(){
-        return productRepository.findAll();
-    }
+public class ProductServiceImpl extends GenericServiceImpl<Product> implements ProductService {
+
     @Override
     public MessageResponse add(ProductDto productDto){
         Product product = MapperUtil.map(productDto, Product.class);
-        productRepository.save(product);
-        return new MessageResponse(200, "Add product successfully");
+        save(product);
+        return new MessageResponse(200, "successfully");
     }
     @Override
     public MessageResponse update(ProductDto productDto, int id){
-        Product existProduct = productRepository.findById(id)
+        findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Product", "id", id));
         Product product = MapperUtil.map(productDto, Product.class);
-        productRepository.save(product);
+        save(product);
         return new MessageResponse(200, "Update product successfully");
     }
+
+
     @Override
-    public MessageResponse delete(int id){
-        Product existProduct = productRepository.findById(id)
+    public void delete(Integer id){
+        Product existProduct = findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Product", "id", id));
         existProduct.setIsDeleted(true);
-        productRepository.save(existProduct);
-        return new MessageResponse(200, "Delete product successfully");
+        save(existProduct);
+
     }
+
+
 }
